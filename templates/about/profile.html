@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Профиль пользователя
+{% endblock %}
+{% block content %}
+    <h2>Профиль пользователя</h2>
+    <p>Имя пользователя: {{ user.username }}</p>
+    <p>Email: {{ user.email }}</p>
+
+    <a href="{% url 'about:log_out' %}" class="btn btn-outline-dark me-2">Log out</a>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+{% if is_edit %}
+Edit card
+{% else %}
+New cat
+{% endif %}
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+  <main style="margin-top: 40px;">
+      {% if is_edit %}
+<form class="needs-validation" method="post" novalidate="" action="{% url 'about:edit_cat' cat.pk %}">
+    {% else %}
+    <form class="needs-validation" method="post" novalidate="" action="{% url 'about:new_cat' %}">
+        {% endif %}
+    {% csrf_token %}
+    {% for elem in form %}
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label for="{{ elem.id_for_label }}" class="form-label">{{ elem.label }}</label>
+              {{ elem }}
+            </div>
+    {% endfor %}
+          <button class="w-100 btn btn-outline-primary mb-3" type="submit">Save card</button>
+        </form>
+  </main>
+</div>
+{% endblock %}

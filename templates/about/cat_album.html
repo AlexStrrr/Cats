@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+New cat
+{% endblock %}
+
+{% block content %}
+<div class="album py-5 bg-body-tertiary">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for i in cats1 %}
+        <div class="col">
+          <div class="card shadow-sm">
+            <img class="bd-placeholder-img card-img-top" src="media/{{ i.image }}" width="100%" height="225" role="img">
+            <div class="card-body">
+              <h2>
+                {{ i.name }}
+              </h2>
+              <p class="card-text">{{ i.description }}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a href="{% url 'about:cat_detail' i.pk %}" type="button" class="btn btn-sm btn-outline-secondary">View</a>
+                  <a href="{% url 'about:edit_cat' i.pk %}" type="button" class="btn btn-sm btn-outline-secondary">Edit</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock %}
